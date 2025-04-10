@@ -13,8 +13,9 @@ public class MemoryBlock{
         status= "free";
         ID= null;
         int fragmentation= 0;
-
     }
+
+    
 
 
 }
