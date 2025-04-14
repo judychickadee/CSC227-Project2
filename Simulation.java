@@ -147,6 +147,7 @@ public class Simulation {
             System.out.println("4) Exit");
             System.out.println("==========================================================");
 
+            System.out.println("Enter your choice:");
             int choice = input.nextInt();
 
             switch (choice) {
