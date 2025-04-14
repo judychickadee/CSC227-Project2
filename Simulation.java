@@ -19,6 +19,67 @@ public class Simulation {
         return Memory[firstSize];
     }
 
+    public static void display(){
+        System.out.println("Memory blocks:");
+        System.out.println("==========================================================");
+        System.out.println("Block#   size    start-end      status");
+        System.out.println("==========================================================");
+        for (int i = 0; i < Memory.length; i++) {
+            if (Memory[i].start<100){
+                if(Memory[i].end<100){System.out.println("Block" + i + "   " + Memory[i].size + "        " + Memory[i].start + "-" + Memory[i].end
+                + "        " + Memory[i].status);}
+                else{
+            System.out.println("Block" + i + "   " + Memory[i].size + "        " + Memory[i].start + "-" + Memory[i].end
+                    + "       " + Memory[i].status);}}
+                    else{
+            System.out.println("Block" + i + "   " + Memory[i].size + "      " + Memory[i].start + "-" + Memory[i].end
+                    + "       " + Memory[i].status);}
+
+        }
+        System.out.println("==========================================================");
+
+    }
+
+    public static void displayFragmentation(){
+        System.out.println("Memory blocks:");
+        System.out.println("========================================================================");
+        System.out.println("Block#   size    start-end      status   ProcessID  InternalFragmentation");
+        System.out.println("========================================================================");
+        for (int i = 0; i < Memory.length; i++) {
+            if(Memory[i].status.equalsIgnoreCase("free")){
+            if (Memory[i].start<100){
+                if(Memory[i].end<100){System.out.println("Block" + i + "   " + Memory[i].size + "        " + Memory[i].start + "-" + Memory[i].end
+                + "        " + Memory[i].status+ "                  " + Memory[i].ID + "          " +
+                Memory[i].fragmentation);}
+                else{
+            System.out.println("Block" + i + "   " + Memory[i].size + "        " + Memory[i].start + "-" + Memory[i].end
+                    + "       " + Memory[i].status+ "           " + Memory[i].ID + "          " +
+                    Memory[i].fragmentation);}}
+                    else{
+            System.out.println("Block" + i + "   " + Memory[i].size + "      " + Memory[i].start + "-" + Memory[i].end
+                    + "       " + Memory[i].status+ "           " + Memory[i].ID + "          " +
+                    Memory[i].fragmentation);}
+            }
+            else{
+                if (Memory[i].start<100){
+                    if(Memory[i].end<100){System.out.println("Block" + i + "   " + Memory[i].size + "        " + Memory[i].start + "-" + Memory[i].end
+                    + "        " + Memory[i].status+ "      " + Memory[i].ID + "            " +
+                    Memory[i].fragmentation);}
+                    else{
+                System.out.println("Block" + i + "   " + Memory[i].size + "        " + Memory[i].start + "-" + Memory[i].end
+                        + "       " + Memory[i].status+ "      " + Memory[i].ID + "            " +
+                        Memory[i].fragmentation);}}
+                        else{
+                System.out.println("Block" + i + "   " + Memory[i].size + "      " + Memory[i].start + "-" + Memory[i].end
+                        + "       " + Memory[i].status+ "      " + Memory[i].ID + "            " +
+                        Memory[i].fragmentation);}
+            }
+
+        }
+        System.out.println("==========================================================");
+
+    }
+
     public static MemoryBlock bestFit(String ID, int size) {
         int bestSize = 0;
 
@@ -74,14 +135,9 @@ public class Simulation {
         System.out.println("Enter allocation strategy (1 for first-fit, 2 for best-fit, 3 for worst-fit):");
         int strategy = input.nextInt();
 
-        System.out.println("Memory blocks are created… ");
-        System.out.println("Memory blocks:");
-
-        for (int i = 0; i < noOfBlocks; i++) {
-            System.out.println("Block" + i + "   " + Memory[i].size + "   " + Memory[i].start + "-" + Memory[i].end
-                    + "   " + Memory[i].status);
-
-        }
+        System.out.println("Memory blocks are created...");
+        display();
+       
 
         while (true) {
 
@@ -89,6 +145,7 @@ public class Simulation {
             System.out.println("2) De-allocates memory blocks");
             System.out.println("3) Print report about the current state of memory and internal Fragmentation");
             System.out.println("4) Exit");
+            System.out.println("==========================================================");
 
             int choice = input.nextInt();
 
@@ -140,14 +197,7 @@ public class Simulation {
                     break;
 
                 case 3:
-                    System.out.println("Memory blocks:");
-
-                    for (int i = 0; i < noOfBlocks; i++) {
-                        System.out.println(
-                                "Block" + i + "   " + Memory[i].size + "   " + Memory[i].start + "-" + Memory[i].end
-                                        + "   " + Memory[i].status + "   " + Memory[i].ID + "   " +
-                                        Memory[i].fragmentation);
-                    }
+                   displayFragmentation();
                     break;
 
                 case 4:
