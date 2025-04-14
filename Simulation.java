@@ -173,6 +173,10 @@ public class Simulation {
 
                     }
 
+                    if (addressBlock.ID==null)
+                    System.out.println("No available block is large enough");
+
+                    else
                     System.out.println(addressBlock.ID + " allocated at address " + addressBlock.start +
                             ", and the internal fragmentation is " + addressBlock.fragmentation);
 
