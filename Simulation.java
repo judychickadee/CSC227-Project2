@@ -13,10 +13,11 @@ public class Simulation {
                 Memory[i].status = "allocated";
                 Memory[i].fragmentation = Memory[i].size - size;
                 firstSize = i;
+                return Memory[firstSize];
             }
         }
 
-        return Memory[firstSize];
+        return null;
     }
 
     public static void display(){
@@ -91,10 +92,15 @@ public class Simulation {
             }
         }
 
+        if(Memory[bestSize].size>=size && Memory[bestSize].status.equalsIgnoreCase("free")){
+
         Memory[bestSize].ID = ID;
         Memory[bestSize].status = "allocated";
         Memory[bestSize].fragmentation = Memory[bestSize].size - size;
         return Memory[bestSize];
+        }
+
+        else return null;
     }
 
     public static MemoryBlock worstFit(String ID, int size) {
@@ -108,10 +114,14 @@ public class Simulation {
             }
         }
 
+        if(Memory[worstSize].size>=size && Memory[worstSize].status.equalsIgnoreCase("free")){
+
         Memory[worstSize].ID = ID;
         Memory[worstSize].status = "allocated";
         Memory[worstSize].fragmentation = Memory[worstSize].size - size;
         return Memory[worstSize];
+        }
+        else return null;
     }
 
     public static void main(String[] args) {
@@ -173,7 +183,7 @@ public class Simulation {
 
                     }
 
-                    if (addressBlock.ID==null)
+                    if (addressBlock==null)
                     System.out.println("No available block is large enough");
 
                     else
