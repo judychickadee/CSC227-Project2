@@ -84,10 +84,13 @@ public class Simulation {
     public static MemoryBlock bestFit(String ID, int size) {
         int bestSize = 0;
 
-        for (int i = 0; i < Memory.length; i++) {
+        for (int i = 0; i < Memory.length; i++) { 
             if (Memory[i].size >= size && Memory[i].status.equalsIgnoreCase("free")) {
-                if (Memory[i].size < Memory[bestSize].size) {
+                if (Memory[i].size < Memory[bestSize].size) { 
                     bestSize = i;
+                } else if(Memory[i].size == Memory[bestSize].size){
+                    if(Memory[bestSize].status.equalsIgnoreCase("allocated"))
+                        bestSize = i;
                 }
             }
         }
@@ -110,6 +113,9 @@ public class Simulation {
             if (Memory[i].size >= size && Memory[i].status.equalsIgnoreCase("free")) {
                 if (Memory[i].size > Memory[worstSize].size) {
                     worstSize = i;
+                } else if (Memory[i].size == Memory[worstSize].size){
+                    if(Memory[worstSize].status.equalsIgnoreCase("allocated"))
+                        worstSize = i;
                 }
             }
         }
