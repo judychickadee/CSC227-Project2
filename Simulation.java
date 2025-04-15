@@ -111,7 +111,7 @@ public class Simulation {
 
         for (int i = 0; i < Memory.length; i++) {
             if (Memory[i].size >= size && Memory[i].status.equalsIgnoreCase("free")) {
-                if (Memory[i].size > Memory[worstSize].size) {
+                if (Memory[i].size > Memory[worstSize].size || Memory[worstSize].status.equalsIgnoreCase("allocated")) {
                     worstSize = i;
                 } else if (Memory[i].size == Memory[worstSize].size){
                     if(Memory[worstSize].status.equalsIgnoreCase("allocated"))
